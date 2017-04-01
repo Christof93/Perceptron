@@ -1,2 +1,2 @@
 # Perceptron
-A simple implementation of the perceptron model in python
+A simple implementation of the perceptron learning algorithm in python
