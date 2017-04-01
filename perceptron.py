@@ -74,7 +74,7 @@ class Perceptron:
     def predict(self,data):
         """predict instances based on the trained model"""
         #check if we predict a list of vectors or just one vector
-        if type(data)==list and type(data[0]==list):
+        if type(data)==list and type(data[0])==list:
             output=[]
             if self.bias:
                 data=self._add_bias(data)
