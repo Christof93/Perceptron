@@ -2,10 +2,11 @@
 # -*- coding: utf-8 -*-
 
 import numpy as np
-import math
+import math,random
 
 def sigmoid(x): 
     return 1/(1 + np.exp(-2*x))      # activation function
+    
 def sigmoid_d(x): 
     return x * (1 - x)             # derivative of sigmoid
 
