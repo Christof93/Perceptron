@@ -13,14 +13,9 @@ def sigmoid_d(x):
 
 class Perceptron:
     def __init__(self,threshold=0.5, learning_rate=0.2, error_margin=0.01,add_bias=True, **kwargs):
-        self.learning_rate = learning_rate
-        self.threshold=threshold
-        self.bias=add_bias
-        self.error_margin=error_margin
-        self.weights=kwargs.get("weights")
-        self.max_iterations=kwargs.get("max_iterations")
-        self.verbose=kwargs.get("verbose")
-        self.activation_function=kwargs.get("activation_function")
+        ########################
+        #  coming soon!
+        ########################
         
     def _add_bias(self,inputs):
         """Add an additional constant 1 bias to the inputs to model the threshold"""
@@ -28,49 +23,9 @@ class Perceptron:
         
     def train(self,inputs):
         """update the weights of the modeled neuron iteratively based on some input data in the form (input_vector,desired_output)"""
-        iterations=0
-        # add the bias input
-        if self.bias:
-            inputs=self._add_bias(inputs)
-
-        # intialize the weights
-        if not self.weights:
-            self.weights=np.zeros(len(inputs[0][0]))
-            
-        while True:
-            iterations+=1
-            if self.max_iterations:
-                if iterations >= self.max_iterations:
-                    break                
-            error_count=0
-            for input_vector, desired_output in inputs: 
-                # sum of the dot product of input vector and weights compared against threshold = output
-                
-                if not self.activation_function:
-                    #unit-step function
-                    result= np.dot(input_vector, self.weights) > self.threshold
-                else:
-                    #custom activation function (use some sort of sigmoid error function)
-                    result= self.activation_function(np.dot(input_vector, self.weights))
-                
-                # the error
-                error = desired_output-result
-                if abs(error) >= self.error_margin:
-                    error_count+=1
-                    for index, value in enumerate(input_vector):
-                        #apply learned reinforcement or inhibition to weights
-                        self.weights[index] += self.learning_rate * error * value
-                        #~ print(self.weights)
-            
-            if self.verbose:
-                print ('-'*60)
-                print self.weights
-                print error_count
-                
-            if error_count==0:
-                break
-        if self.verbose:
-            print "iterations: ",iterations
+        ######################
+        # coming soon!
+        ######################
     
     def predict(self,data):
         """predict instances based on the trained model"""
