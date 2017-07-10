@@ -96,7 +96,6 @@ class Perceptron:
             pred=self.predict(input_vector)
             if pred==desired_output:
                 correct+=1
-        print "accuracy: ", float(correct)/float(len(test_data))
         return float(correct)/float(len(test_data))
             
     
@@ -107,3 +106,4 @@ if __name__=="__main__":
     p=Perceptron(verbose=True,max_iterations=100,activation_function=sigmoid)
     p.train(training_set_xor)
     p.test(training_set_xor)
+
