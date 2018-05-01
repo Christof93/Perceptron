@@ -3,6 +3,7 @@
 
 import numpy as np
 import math,random
+import time
 
 def sigmoid(x): 
     return 1/(1 + np.exp(-2*x))      # activation function
@@ -32,12 +33,15 @@ class Perceptron:
         # add the bias input
         if self.bias:
             inputs=self._add_bias(inputs)
+        if self.verbose:
+            print "training with ", len(inputs), "examples."
 
         # intialize the weights
         if not self.weights:
             self.weights=np.zeros(len(inputs[0][0]))
             
         while True:
+            start_time=time.time()
             iterations+=1
             if self.max_iterations:
                 if iterations >= self.max_iterations:
@@ -64,8 +68,9 @@ class Perceptron:
             
             if self.verbose:
                 print ('-'*60)
+                print "end of epoch",str(iterations+1)+". training took ",time.time()-start_time,"seconds."
                 print self.weights
-                print error_count
+                print "number of errors:",error_count
                 
             if error_count==0:
                 break
@@ -78,8 +83,8 @@ class Perceptron:
         if type(data)==list and type(data[0])==list:
             output=[]
             if self.bias:
-                data=self._add_bias(data)
-            for input_vector in test_points:
+                data=[dp+[1] for dp in data]
+            for input_vector in data:
                 pred=np.dot(input_vector, self.weights) > self.threshold
                 output.append(pred)
         else:
@@ -89,6 +94,8 @@ class Perceptron:
                 
     def test(self,test_data):
         """test the learned accuracy given on a test set of data"""
+        if self.verbose:
+            print "testing with ", len(test_data), "examples."
         if self.bias:
             test_data=self._add_bias(test_data)
         correct=0
@@ -96,6 +103,7 @@ class Perceptron:
             pred=self.predict(input_vector)
             if pred==desired_output:
                 correct+=1
+            
         return float(correct)/float(len(test_data))
             
     
